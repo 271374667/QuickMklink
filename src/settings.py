@@ -1,4 +1,4 @@
 from typing import Final
 
 TAG: Final[str] = "QuickMklink"
-VERSION: Final[str] = "0.3.2"
+VERSION: Final[str] = "0.3.3"
