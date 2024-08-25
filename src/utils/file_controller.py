@@ -59,6 +59,9 @@ import ctypes.wintypes
 
 import loguru
 
+from src.exceptions import exception_file
+from pathlib import Path
+
 
 class FileController:
     def __init__(self):
@@ -72,6 +75,18 @@ class FileController:
         self._FOF_SIMPLEPROGRESS = 0x0100
 
     def _file_operation(self, wFunc, source, destination=None):
+        def undo_file_operation(wFunc, source, destination=None):
+            # Implement undo logic here, for example, move files back to the original location
+            if wFunc == self._FO_MOVE:
+                dst = Path(destination) / Path(source).name
+                self._file_operation(self._FO_MOVE, str(dst), str(Path(source).parent))
+            elif wFunc == self._FO_COPY:
+                self._file_operation(self._FO_DELETE, destination)
+            elif wFunc == self._FO_DELETE:
+                # Deleting cannot be undone using this method
+                loguru.logger.error("Delete operation cannot be undone.")
+                raise exception_file.FileDeleteCancelledError()
+
         class SHFILEOPSTRUCT(ctypes.Structure):
             _fields_ = [
                 ("hwnd", ctypes.wintypes.HWND),
@@ -96,7 +111,11 @@ class FileController:
 
         result = self._SHFileOperation(ctypes.byref(file_op))
         if result != 0:
-            loguru.logger.error(f"Error: {result}")
+            if file_op.fAnyOperationsAborted:
+                undo_file_operation(wFunc, source, destination)
+                raise exception_file.FileOperationError("File operation cancelled by user.")
+            else:
+                raise exception_file.FileOperationError(f"File Operation Error: {result}")
         else:
             loguru.logger.success(f"Operation successful: {source} to {destination if destination else 'deleted'}")
 
@@ -134,5 +153,5 @@ class FileController:
 if __name__ == '__main__':
     fc = FileController()
     fc.move_files_with_progress(r"C:\path\to\source\*", r"C:\path\to\destination")
-    fc.copy_files_with_progress(r"C:\path\to\source\*", r"C:\path\to\destination")
-    fc.delete_files_with_progress(r"C:\path\to\source\*")
+    # fc.copy_files_with_progress(r"C:\path\to\source\*", r"C:\path\to\destination")
+    # fc.delete_files_with_progress(r"C:\path\to\source\*")
