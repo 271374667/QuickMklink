@@ -8,3 +8,7 @@ LOCALE_DIR = ROOT / 'locale'
 
 # Path to the file
 CONFIG_FILE = ROOT / 'config.json'
+ENTRY_PY_FILE = ROOT / 'QuickMklink.py'
+
+if __name__ == '__main__':
+    print(ENTRY_PY_FILE)

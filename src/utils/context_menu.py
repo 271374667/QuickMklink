@@ -272,11 +272,11 @@ class ContextMenu:
 if __name__ == '__main__':
     window_ico_path: Path = Path(r"E:\load\python\Project\VideoFusion\assets\images\logo.ico")
     cm = ContextMenu()
-    # cm.add_right_click_option_in_dir("MyCustomOption", r"notepad.exe", window_ico_path)
+    # cm.add_right_click_option_in_dir("MyCustomOption", r'cmd /c echo "%V" > t.txt', window_ico_path)
     cm.remove_right_click_option_in_dir("MyCustomOption")
     # cm.add_right_click_option_in_file("MyCustomOption", r"notepad.exe", window_ico_path)
     # cm.add_right_click_option_in_file("MyCustomOption", r'cmd /c echo [QuickMklink]"%1"[/QuickMklink] | clip',
     #                                   window_ico_path)
     # cm.remove_right_click_option_in_file("MyCustomOption")
-    print(cm.is_right_click_option_in_file("MyCustomOption"))
-    print(cm.is_right_click_option_in_dir("MyCustomOption"))
+    # print(cm.is_right_click_option_in_file("MyCustomOption"))
+    # print(cm.is_right_click_option_in_dir("MyCustomOption"))
