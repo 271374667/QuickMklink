@@ -6,9 +6,9 @@ from src.core import paths
 class Entry:
     @staticmethod
     def get_entry() -> Path:
-        result = list(paths.ROOT.glob('*.exe'))
-        if result:
-            return result[0]
+        result = paths.ROOT / 'QuickMklink.exe'
+        if result.exists():
+            return result
         else:
             return paths.ENTRY_PY_FILE
 
