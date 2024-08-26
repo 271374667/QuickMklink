@@ -2,6 +2,11 @@
 
 QuickMklink use right-click menus to provide almost the same operating habits as the original Window, so you can leave all other mklink tools behind and enjoy migrating your programs using mklink commands without interrupting your work.
 
+<p align="center">
+  <a>
+    <img src="assets/images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
   <h3 align="center">QuickMklink</h3>
   <p align="center">
     The mklink tool provides a native level of operating experience
