@@ -126,7 +126,7 @@ class ContextMenu:
             return False
 
     def add_right_click_option_in_file(self, name: str, command: str, ico_path: Path | None = None) -> bool:
-        """Adds a new option to the file context menu.
+        """Adds a new option to the file and directory context menu.
 
         Args:
             name (str): The name of the context menu option.
@@ -136,22 +136,25 @@ class ContextMenu:
         Returns:
             bool: True if the option was added successfully, False otherwise.
         """
-        key_path = f"{self._file_shell_key}\\{name}"
-        try:
-            key = reg.CreateKey(reg.HKEY_CLASSES_ROOT, key_path)
-            reg.SetValue(key, '', reg.REG_SZ, name)
-            if ico_path is not None and ico_path.exists():
-                reg.SetValueEx(key, 'Icon', 0, reg.REG_SZ, str(ico_path))
-                loguru.logger.debug(f"Successfully added icon {ico_path} to {name}.")
-            command_key = reg.CreateKey(key, 'command')
-            reg.SetValue(command_key, '', reg.REG_SZ, command)
-            reg.CloseKey(key)
-            reg.CloseKey(command_key)
-            loguru.logger.debug(f"Successfully added {name} to right-click menu.")
-            return True
-        except Exception as e:
-            loguru.logger.error(f"Failed to add {name} to right-click menu: {e}")
-            return False
+        success = True
+        key_paths = [f"{self._file_shell_key}\\{name}", f"Directory\\shell\\{name}"]
+
+        for key_path in key_paths:
+            try:
+                key = reg.CreateKey(reg.HKEY_CLASSES_ROOT, key_path)
+                reg.SetValue(key, '', reg.REG_SZ, name)
+                if ico_path is not None and ico_path.exists():
+                    reg.SetValueEx(key, 'Icon', 0, reg.REG_SZ, str(ico_path))
+                    loguru.logger.debug(f"Successfully added icon {ico_path} to {name}.")
+                command_key = reg.CreateKey(key, 'command')
+                reg.SetValue(command_key, '', reg.REG_SZ, command)
+                reg.CloseKey(key)
+                reg.CloseKey(command_key)
+                loguru.logger.debug(f"Successfully added {name} to right-click menu at {key_path}.")
+            except Exception as e:
+                loguru.logger.error(f"Failed to add {name} to right-click menu at {key_path}: {e}")
+                success = False
+        return success
 
     def remove_right_click_option_in_dir(self, name: str) -> bool:
         """Removes an option from the directory context menu.
@@ -173,7 +176,7 @@ class ContextMenu:
             return False
 
     def remove_right_click_option_in_file(self, name: str) -> bool:
-        """Removes an option from the file context menu.
+        """Removes an option from the file and directory context menu.
 
         Args:
             name (str): The name of the context menu option to remove.
@@ -181,15 +184,17 @@ class ContextMenu:
         Returns:
             bool: True if the option was removed successfully, False otherwise.
         """
-        key_path = f"{self._file_shell_key}\\{name}"
-        try:
-            reg.DeleteKey(reg.HKEY_CLASSES_ROOT, f"{key_path}\\command")
-            reg.DeleteKey(reg.HKEY_CLASSES_ROOT, key_path)
-            loguru.logger.debug(f"Successfully removed {name} from right-click menu.")
-            return True
-        except Exception as e:
-            loguru.logger.error(f"Failed to remove {name} from right-click menu: {e}")
-            return False
+        success = True
+        key_paths = [f"{self._file_shell_key}\\{name}", f"Directory\\shell\\{name}"]
+        for key_path in key_paths:
+            try:
+                reg.DeleteKey(reg.HKEY_CLASSES_ROOT, f"{key_path}\\command")
+                reg.DeleteKey(reg.HKEY_CLASSES_ROOT, key_path)
+                loguru.logger.debug(f"Successfully removed {name} from right-click menu at {key_path}.")
+            except Exception as e:
+                loguru.logger.error(f"Failed to remove {name} from right-click menu at {key_path}: {e}")
+                success = False
+        return success
 
     def is_right_click_option_in_dir(self, name: str) -> bool:
         """Checks if a directory context menu option exists.
@@ -208,7 +213,7 @@ class ContextMenu:
             return False
 
     def is_right_click_option_in_file(self, name: str) -> bool:
-        """Checks if a file context menu option exists.
+        """Checks if a file or directory context menu option exists.
 
         Args:
             name (str): The name of the context menu option.
@@ -216,12 +221,14 @@ class ContextMenu:
         Returns:
             bool: True if the option exists, False otherwise.
         """
-        key_path = f"{self._file_shell_key}\\{name}"
-        try:
-            reg.OpenKey(reg.HKEY_CLASSES_ROOT, key_path)
-            return True
-        except FileNotFoundError:
-            return False
+        key_paths = [f"{self._file_shell_key}\\{name}", f"Directory\\shell\\{name}"]
+        for key_path in key_paths:
+            try:
+                reg.OpenKey(reg.HKEY_CLASSES_ROOT, key_path)
+                return True
+            except FileNotFoundError:
+                continue
+        return False
 
     def _create_key(self, path: str, sub_key: str) -> reg.HKEYType:
         """Creates a new registry key or opens it if it already exists.
@@ -273,10 +280,13 @@ if __name__ == '__main__':
     window_ico_path: Path = Path(r"E:\load\python\Project\VideoFusion\assets\images\logo.ico")
     cm = ContextMenu()
     # cm.add_right_click_option_in_dir("MyCustomOption", r'cmd /c echo "%V" > t.txt', window_ico_path)
-    cm.remove_right_click_option_in_dir("MyCustomOption")
+    # cm.remove_right_click_option_in_dir("MyCustomOption")
     # cm.add_right_click_option_in_file("MyCustomOption", r"notepad.exe", window_ico_path)
     # cm.add_right_click_option_in_file("MyCustomOption", r'cmd /c echo [QuickMklink]"%1"[/QuickMklink] | clip',
     #                                   window_ico_path)
-    # cm.remove_right_click_option_in_file("MyCustomOption")
+
+    # cm.add_right_click_option_in_file("MyCustomOption", r'cmd /c for %i in (%*) do @echo %i >> "%~dp0WritingFilePaths.txt"',
+    #                                   window_ico_path)
+    cm.remove_right_click_option_in_file("MyCustomOption")
     # print(cm.is_right_click_option_in_file("MyCustomOption"))
     # print(cm.is_right_click_option_in_dir("MyCustomOption"))
