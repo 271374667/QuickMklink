@@ -17,6 +17,7 @@ class LanguageValidator(config_base.ConfigValidator):
 
 class Config(config_base.QConfig):
     is_first_time = config_base.ConfigItem('General', "FirstTimeStart", True, config_base.BoolValidator())
+    is_close_cmd_after_finished = config_base.ConfigItem('General', "CloseAfterFinished", True, config_base.BoolValidator())
     language = config_base.ConfigItem('General', "Language", "en_US", LanguageValidator())
 
 
