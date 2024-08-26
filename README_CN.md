@@ -5,7 +5,7 @@ QuickMklink 提供右键菜单来提供和原版 Window 几乎一致的操作习
 
 <p align="center">
   <a>
-    <img src="./assets/images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">QuickMklink</h3>
