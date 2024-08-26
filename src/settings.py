@@ -7,7 +7,7 @@ _ = I18n().trans
 TAG: Final[str] = "QuickMklink"
 TAGCOPY: Final[str] = "QuickMklinkCopy"
 TAGMOVE: Final[str] = "QuickMklinkMove"
-VERSION: Final[str] = "0.8.0"
+VERSION: Final[str] = "0.9.15"
 WATING_INTERVAL: Final[int] = 100
 ABOUT_TEXT: Final[str] = _("""
 QuickMklink is a tool that helps you create symbolic links quickly.
