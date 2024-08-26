@@ -14,6 +14,7 @@ QuickMklink use right-click menus to provide almost the same operating habits as
     <a href="https://space.bilibili.com/282527875"><strong>Go to Author bilibili »</strong></a>
     <br />
     <br />
+    ENGLISH | [简体中文](https://github.com/zam1024t/LocalizedMenu/blob/master/README_CN.md)
 </p>
 
 ## Quick Start

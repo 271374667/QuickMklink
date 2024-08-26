@@ -7,7 +7,6 @@ QuickMklink 提供右键菜单来提供和原版 Window 几乎一致的操作习
   <a>
     <img src="assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
-
   <h3 align="center">QuickMklink</h3>
   <p align="center">
     提供原生级别操作体验的mklink工具
@@ -16,6 +15,9 @@ QuickMklink 提供右键菜单来提供和原版 Window 几乎一致的操作习
     <br />
     <br />
 </p>
+
+<center>[ENGLISH](https://github.com/zam1024t/LocalizedMenu/blob/master/README.md) | 简体中文</center>
+
 ## 快速上手
 
 我会向你演示使用 QuickMklink 来创建一个 mklink 的符号链接是一件多么简单的事情
