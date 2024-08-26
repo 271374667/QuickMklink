@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-26 20:56+0800\n"
+"PO-Revision-Date: 2024-08-26 21:07+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: chi (B)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Eazy Po 1.0.0.0\n"
+
+#: QuickMklink.py:35
+msgid "The path to the file"
+msgstr "The path to the file"
+
+#: QuickMklink.py:36
+msgid "Setup right click menu"
+msgstr "Setup right click menu"
+
+#: QuickMklink.py:37 src/views/view_main.py:71
+msgid "Uninstall right click menu"
+msgstr "Uninstall right click menu"
+
+#: QuickMklink.py:83
+msgid "Press any key to exit."
+msgstr "Press any key to exit."
+
+#: QuickMklink.py:93 QuickMklink.py:97 QuickMklink.py:102
+msgid "Mklink Error"
+msgstr "Mklink Error"
+
+#: QuickMklink.py:94
+msgid "You have not copied or cut the file, please copy or cut the file first."
+msgstr "You have not copied or cut the file, please copy or cut the file first."
+
+#: QuickMklink.py:97
+msgid "The path to the file is required."
+msgstr "The path to the file is required."
+
+#: src/settings.py:12
+msgid ""
+"\n"
+"QuickMklink is a tool that helps you create symbolic links quickly.\n"
+"The software is open source software, please do not carry out secondary "
+"trafficking or commercial purposes\n"
+"\n"
+"author: PythonImporter\n"
+msgstr ""
+"\n"
+"QuickMklink is a tool that helps you create symbolic links quickly.\n"
+"The software is open source software, please do not carry out secondary "
+"trafficking or commercial purposes\n"
+"\n"
+"author: PythonImporter\n"
+
+#: src/common/context_menu_manager.py:14
+msgid "Copy with mklink"
+msgstr "Copy with mklink"
+
+#: src/common/context_menu_manager.py:15
+msgid "Move with mklink"
+msgstr "Move with mklink"
+
+#: src/common/context_menu_manager.py:16
+msgid "Paste your files here with mklink"
+msgstr "Paste your files here with mklink"
+
+#: src/views/view_main.py:68
+msgid "Close command line After Finished?"
+msgstr "Close command line After Finished?"
+
+#: src/views/view_main.py:70
+msgid "Register right click menu"
+msgstr "Register right click menu"
+
+#: src/views/view_main.py:73
+msgid "Language"
+msgstr "Language"
+
+#: src/views/view_main.py:74 src/views/view_main.py:76
+msgid "About"
+msgstr "About"
+
+#: 测试/多语言测试.py:12
+msgid "Hello, World!"
+msgstr "Hello, World!"
