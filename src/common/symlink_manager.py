@@ -22,6 +22,7 @@ class SymlinkManager:
             return
         try:
             command = f'mklink /D "{dst}" "{src}"'
+            loguru.logger.debug(f'Command: {command}')
             subprocess.run(command, check=True, encoding='utf-8', shell=True)
             loguru.logger.success(f'Successfully created symlink from {dst} to {src}')
         except subprocess.CalledProcessError as e:
@@ -42,6 +43,7 @@ class SymlinkManager:
 
         try:
             command = f'mklink /D "{src}" "{dst_after_move}"'
+            loguru.logger.debug(f'Command: {command}')
             # Move the source file to the destination
             self._file_controller.move_files_with_progress(str(src), str(dst))
 
@@ -56,5 +58,5 @@ if __name__ == '__main__':
     symlink_manager = SymlinkManager()
     # symlink_manager.paste(Path(r"E:\load\python\MyWheel\我的轮子"),
     #                       Path(r'E:\load\python\Project\QuickMklink\locale\zh_CN\LC_MESSAGES'))
-    symlink_manager.cut(Path(r'D:\视频\telegram\国产\冯珊珊'),
+    symlink_manager.cut(Path(r'D:\aa'),
                         Path(r'E:\load\python\Tools\i18n'))
