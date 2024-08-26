@@ -9,3 +9,9 @@ wheels/
 # venv
 .venv
 测试
+output
+*.dist
+*.build
+QuickMklink
+*.log
+config.json
