@@ -19,6 +19,9 @@ class MessageDialog:
     def confirm(self, title: str, message: str) -> bool:
         return messagebox.askokcancel(title, message)
 
+    def __del__(self):
+        self.root.destroy()
+
 
 if __name__ == '__main__':
     dialog = MessageDialog()
