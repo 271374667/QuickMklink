@@ -16,7 +16,7 @@ QuickMklink 提供右键菜单来提供和原版 Window 几乎一致的操作习
     <br />
 </p>
 
-<center>[ENGLISH](https://github.com/zam1024t/LocalizedMenu/blob/master/README.md) | 简体中文</center>
+[ENGLISH](https://github.com/271374667/QuickMklink/blob/master/README.md) | 简体中文
 
 ## 快速上手
 

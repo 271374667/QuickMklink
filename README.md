@@ -6,7 +6,6 @@ QuickMklink use right-click menus to provide almost the same operating habits as
   <a>
     <img src="assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
-
   <h3 align="center">QuickMklink</h3>
   <p align="center">
     The mklink tool provides a native level of operating experience
@@ -14,8 +13,9 @@ QuickMklink use right-click menus to provide almost the same operating habits as
     <a href="https://space.bilibili.com/282527875"><strong>Go to Author bilibili »</strong></a>
     <br />
     <br />
-    ENGLISH | [简体中文](https://github.com/zam1024t/LocalizedMenu/blob/master/README_CN.md)
 </p>
+
+​    ENGLISH | [简体中文](https://github.com/271374667/QuickMklink/blob/master/README_CN.md)
 
 ## Quick Start
 
