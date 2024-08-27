@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "typing-extensions>=4.12.2",
     "loguru>=0.7.2",
+    "pyinstaller>=6.10.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.10"
