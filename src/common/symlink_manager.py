@@ -19,7 +19,7 @@ class SymlinkManager:
 
         if dst.exists():
             loguru.logger.error(f'Target path {dst} already exists.')
-            return
+            raise FileExistsError(f'Target path {dst} already exists.')
         try:
             command = f'mklink /D "{dst}" "{src}"'
             loguru.logger.debug(f'Command: {command}')
@@ -32,14 +32,10 @@ class SymlinkManager:
         """
         Move the source file to the destination and create a symbolic link at the source pointing to the destination.
         """
-        if dst.name != src.name:
-            dst_after_move = dst / src.name
-        else:
-            dst_after_move = dst
-
+        dst_after_move = dst / src.name if dst.name != src.name else dst
         if dst_after_move.exists():
             loguru.logger.error(f'Target path {dst_after_move} already exists.')
-            return
+            raise FileExistsError(f'Target path {dst_after_move} already exists.')
 
         try:
             command = f'mklink /D "{src}" "{dst_after_move}"'
