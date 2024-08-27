@@ -10,7 +10,7 @@ class TagParser:
 
     def get_paths(self, value: str) -> list[Path]:
         x: list[str] = self.pattern.findall(value)
-        return [Path(i.replace('"', '').replace("'", '')) for i in x]
+        return list({Path(i.replace('"', '').replace("'", '')) for i in x})
 
     def get_tag(self) -> str:
         return settings.TAG
