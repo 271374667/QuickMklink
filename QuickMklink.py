@@ -69,16 +69,17 @@ def main():
     source_file_path_list: list[Path] = tag_parser.get_paths(clipboard_manager.get_current_text())
 
     symlink_manager = SymlinkManager()
+    source_path: Path = Path(str(args.path).replace('"', '').replace("'", ''))
     if tag == settings.TAGCOPY:
-        loguru.logger.debug(f'Paste {source_file_path_list} to {args.path}')
+        loguru.logger.debug(f'Paste {source_file_path_list} to {source_path}')
         for i in source_file_path_list:
-            symlink_manager.paste(i, Path(args.path))
-            loguru.logger.success(f'Paste {i} to {args.path}')
+            symlink_manager.paste(i, source_path)
+            loguru.logger.success(f'Paste {i} to {source_path}')
     elif tag == settings.TAGMOVE:
-        loguru.logger.debug(f'Cut {source_file_path_list} to {args.path}')
+        loguru.logger.debug(f'Cut {source_file_path_list} to {source_path}')
         for i in source_file_path_list:
-            symlink_manager.cut(i, Path(args.path))
-            loguru.logger.success(f'Cut {i} to {args.path}')
+            symlink_manager.cut(i, Path(source_path))
+            loguru.logger.success(f'Cut {i} to {source_path}')
     else:
         loguru.logger.error('Tag not found')
         raise ExceptionTagNoFoundError(f"Tag {tag} not found.")
@@ -87,6 +88,7 @@ def main():
     clipboard_manager.clear()
     if not cfg.get(cfg.is_close_cmd_after_finished):
         input(_('Press any key to exit.'))
+    MessageDialog().info(_('Mklink'), _('Success'))
 
 
 if __name__ == '__main__':
@@ -101,6 +103,9 @@ if __name__ == '__main__':
     except FileNotFoundError:
         messages_dialog = MessageDialog()
         messages_dialog.error(_('Mklink Error'), _('The path to the file is required.'))
+    except FileExistsError:
+        messages_dialog = MessageDialog()
+        messages_dialog.error(_('Mklink Error'), _('Target path already exists.'))
     except Exception as e:
         loguru.logger.error(e)
         loguru.logger.error('An error occurred, please check the log for details.')
