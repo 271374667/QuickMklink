@@ -19,6 +19,8 @@ from src.utils.permission import Permission
 # [QuickMklink]"E:\load\python\Project\VideoFusion\assets\images\logo.png"[/QuickMklink]
 # 1223 是取消移动文件时候的错误代码
 # nuitka QuickMklink.py --standalone --enable-plugin=tk-inter --output-dir=output --windows-icon-from-ico="E:\load\python\Project\QuickMklink\assets\images\logo.ico"
+
+
 _ = i18n.I18n().trans
 loguru.logger.add(LOG_FILE, rotation=timedelta(days=1), retention=timedelta(days=7), level='DEBUG')
 
