@@ -69,9 +69,7 @@ class LanguagesChinese(Languages):
     @property
     def is_system_language(self) -> bool:
         locale_setting = locale.getlocale()[0]
-        if locale_setting is None:
-            return False
-        return 'Chinese' in locale_setting
+        return False if locale_setting is None else 'Chinese' in locale_setting
 
 
 class LanguagesEnglish(Languages):
@@ -102,6 +100,9 @@ class I18n:
     @property
     def languages(self) -> list[Languages]:
         return self._languages
+
+    def reflush(self):
+        self.__init__()
 
     def __repr__(self):
         return f'config_language: {self._config_language.domain}, config_localdir:{self._config_language.localedir}, config_language:{self._config_language.languages}'
